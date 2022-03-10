@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue2快速起步</title>
 </head>
+
 <body>
-<div id="app">
- <h2>你好，{{message}}</h2>
- <h3>{{age}}</h3>
-</div>
+  <div id="app">
+    <h2>你好，{{message}}</h2>
+    <h3>{{age}}</h3>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-<script>
-  // 初始化一个Vue实例
-  const app = new Vue({
-    // 声明页面渲染的Vue实例的元素
-    el: '#app',
-    // 定义数据
-    data: {
-      message: 'hello vue',
-      age: 13
-    }
-  })
-</script>
+  <script>
+    // 初始化一个Vue实例
+    const app = new Vue({
+      // 声明页面渲染的Vue实例的元素
+      el: '#app',
+      // 定义数据
+      data: {
+        message: 'hello vue',
+        age: 13
+      }
+    })
+  </script>
 
 </body>
+
 </html>

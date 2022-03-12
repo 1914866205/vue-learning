@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件修饰符</title>
+</head>
+
+<body>
+  <div id="root">
+    <!-- 用.prevent修饰符阻止默认事件 -->
+    <!-- <a @click.prevent="doThis" href="#">点击</a>
+    <form action="/login" @submit.prevent="doThis('hello')" method="get">
+      <input type="submit" value="提交">
+    </form> -->
+    <h2 v-if="show">{{info}}</h2>
+    <input type="text" @keyup.up="submit">
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          link: 'https://www.baidu.com',
+          info: 'hello',
+          show: false
+        }
+      },
+      methods: {
+        doThis(msg) {
+          alert(msg);
+        },
+        submit() {
+          this.show = true
+        }
+      }
+    });
+    const vm = app.mount('#root')
+  </script>
+</body>
+
+</html>

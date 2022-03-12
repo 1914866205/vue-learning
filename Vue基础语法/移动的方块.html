@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>移动的方块</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #333;
+    }
+
+    .box-wrapper {
+      background: #54ABA0;
+      position: relative;
+      margin: 50px auto;
+    }
+
+    .box {
+      position: absolute;
+      line-height: 100px;
+      background-color: #fff;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div :style="{width : wrapperWidth + 'px', height: wrapperHeight + 'px'}" class="box-wrapper">
+      <div :style="{ width: boxWidth + 'px', height : boxHeight + 'px' ,left: offsetLeft + 'px',top: offsetTop + 'px' }"
+        class="box" ref="box" @my-key-down="move($event)">
+        移动的方块
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          wrapperWidth: 500,
+          wrapperHeight: 500,
+          boxWidth: 100,
+          boxHeight: 100,
+          offsetLeft: 0,
+          offsetTop: 0,
+        }
+      },
+      mounted() {
+        let box = this.$refs.box;
+        window.addEventListener('keydown', function (event) {
+          // 收到标准键盘事件 keydown 后 ，创建一个自定义事件 my-key-down ，并 dispatchEvent
+          // Vue 绑定的 @my-key-down 就会接收到这个自定义事件
+          let myEvent = new Event('my-key-down');
+          myEvent.keyCode = event.keyCode;
+          box.dispatchEvent(myEvent);
+        })
+      },
+      created() {
+        this.offsetLeft = this.wrapperWidth / 2 - this.boxWidth / 2;
+        this.offsetTop = this.wrapperHeight / 2 - this.boxHeight / 2;
+      },
+      methods: {
+        move(event) {
+          let keyCode = event.keyCode;
+          console.log(keyCode);
+          let box = this.$refs.box;
+          switch (keyCode) {
+            case 37:
+              if (this.offsetLeft == 0) {
+                alert('到左边了');
+                return;
+              }
+              this.offsetLeft -= 2;
+              break;
+            case 39:
+              if (this.offsetLeft == this.wrapperWidth - this.boxWidth) {
+                alert('到右边了');
+                return;
+              }
+              this.offsetLeft += 2;
+              break;
+            case 38:
+              if (this.offsetTop === 0) {
+                alert('到上边了');
+                return;
+              }
+              this.offsetTop -= 2;
+              break;
+            case 40:
+              if (this.offsetTop == this.wrapperHeight - this.boxHeight) {
+                alert('到下边了');
+                return;
+              }
+              this.offsetTop += 2;
+              break;
+          }
+        },
+      }
+    });
+
+    const vm = app.mount('#root')
+  </script>
+</body>
+
+</html>

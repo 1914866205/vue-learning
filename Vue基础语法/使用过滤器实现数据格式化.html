@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用过滤器实现数据格式化——Vue2支持，Vue3不支持</title>
+</head>
+
+<body>
+  <div id="root">
+    <h2>{{message}}</h2>
+    <h2>{{message|date-format('yyyy-mm-dd')}}</h2>
+    <h2>{{message|date-format(message,'yyyy-mm-dd')}}</h2>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    //过滤器一定要在VUE实例初始化之前注册
+    Vue.filter('date-format', function (input, pattern = '') {
+      let dt = new Date(input);
+
+      let y = dt.getFullYear();
+      let m = (dt.getMonth() + 1).toString().padStart(2, '0');
+      let d = dt.getDate().toString().padStart(2, '0');
+
+      let hh = dt.getHours().toString().padStart(2, '0');
+      let mm = dt.getMinutes().toString().padStart(2, '0');
+      let ss = dt.getSeconds().toString().padStart(2, '0');
+      if (pattern === 'yyyy-mm-dd') {
+        return `${y}-${m}-${d}`;
+      } else {
+        return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+      }
+    });
+
+    const app = new Vue({
+      el: '#root',
+      data: {
+        message: new Date()
+      },
+      filters: { // 私有局部过滤器，只能在 当前 VM 对象所控制的 View 区域进行使用
+        dataFormat: function (input, pattern = "") { // 在参数列表中 通过 pattern="" 来指定形参默认值
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

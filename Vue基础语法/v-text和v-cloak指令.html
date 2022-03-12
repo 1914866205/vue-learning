@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-text和v-cloak指令</title>
+  <style>
+    /* v-cloak指令的样式：在DOM节点渲染完成之前不显示 */
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <!-- 存在闪屏现象 -->
+    <!-- <h2>{{message}}</h2> -->
+    <!-- 使用v-text解决闪屏现象 -->
+    <!-- <h2 v-text="message"></h2> -->
+
+    <h2 v-cloak>
+      你好啊，很好啊，{{message}}
+    </h2>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'hello Vue'
+        }
+      }
+    });
+    const vm = app.mount('#root')
+  </script>
+</body>
+
+</html>

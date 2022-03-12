@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div id="root">
+  <div id="app">
     <h2>{{message}}</h2>
     <h2>{{message|date-format('yyyy-mm-dd')}}</h2>
     <h2>{{message|date-format(message,'yyyy-mm-dd')}}</h2>
@@ -36,7 +36,7 @@
     });
 
     const app = new Vue({
-      el: '#root',
+      el: '#app',
       data: {
         message: new Date()
       },

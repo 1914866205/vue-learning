@@ -29,7 +29,7 @@
 </head>
 
 <body>
-  <div id="root">
+  <div id="app">
     <div :style="{width : wrapperWidth + 'px', height: wrapperHeight + 'px'}" class="box-wrapper">
       <div :style="{ width: boxWidth + 'px', height : boxHeight + 'px' ,left: offsetLeft + 'px',top: offsetTop + 'px' }"
         class="box" ref="box" @my-key-down="move($event)">
@@ -72,14 +72,14 @@
           let box = this.$refs.box;
           switch (keyCode) {
             case 37:
-              if (this.offsetLeft == 0) {
+              if (this.offsetLeft === 0) {
                 alert('到左边了');
                 return;
               }
               this.offsetLeft -= 2;
               break;
             case 39:
-              if (this.offsetLeft == this.wrapperWidth - this.boxWidth) {
+              if (this.offsetLeft === this.wrapperWidth - this.boxWidth) {
                 alert('到右边了');
                 return;
               }
@@ -93,7 +93,7 @@
               this.offsetTop -= 2;
               break;
             case 40:
-              if (this.offsetTop == this.wrapperHeight - this.boxHeight) {
+              if (this.offsetTop === this.wrapperHeight - this.boxHeight) {
                 alert('到下边了');
                 return;
               }
@@ -104,7 +104,7 @@
       }
     });
 
-    const vm = app.mount('#root')
+    const vm = app.mount('#app')
   </script>
 </body>
 

@@ -5,11 +5,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>v-html和v-pre指令</title>
+  <title>v-html指令</title>
+  <style>
+    body {
+      background-color: rgb(81, 146, 184);
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root">
+  <div id="app">
     <ul>
       <!-- 错误的做法 -->
       <li>{{age}}</li>
@@ -18,10 +23,6 @@
       <li v-html="age"></li>
       <li v-html="link"></li>
     </ul>
-    <!-- 错误的做法 -->
-    <div>Vue真有趣，特别是{{Mustache}}表达式</div>
-    <!-- 正确的做法，原样输出{{Mustache}} -->
-    <div v-pre>Vue真有趣，特别是{{Mustache}}表达式</div>
   </div>
 
   <script src="https://unpkg.com/vue@next"></script>
@@ -30,19 +31,13 @@
     const app = Vue.createApp({
       data() {
         return {
-          message: 'hello world',
           age: '<strong>13</strong>',
           link: '<a href="https://www.baidu.com">百度一下</a>'
-        }
-      },
-      methods: {
-        customMethod(str) {
-          return str.split('').reverse().join(',')
         }
       }
     });
 
-    const vm = app.mount('#root')
+    const vm = app.mount('#app')
   </script>
 </body>
 

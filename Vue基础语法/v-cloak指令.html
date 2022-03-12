@@ -5,12 +5,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>v-if和v-show指令</title>
+  <title>v-cloak指令</title>
+  <style>
+    /* v-cloak指令的样式：在DOM节点渲染完成之前不显示 */
+    [v-cloak] {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
-    <h2 v-show="show">{{message}}</h2>
+    <h2 v-cloak>
+      你好，{{message}}
+    </h2>
   </div>
 
   <script src="https://unpkg.com/vue@next"></script>
@@ -19,8 +27,7 @@
     const app = Vue.createApp({
       data() {
         return {
-          message: 'hello world',
-          show: false
+          message: 'Vue3'
         }
       }
     });

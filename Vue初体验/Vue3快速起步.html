@@ -5,12 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>v-if和v-show指令</title>
+  <title>Vue3快速起步</title>
 </head>
 
 <body>
   <div id="app">
-    <h2 v-show="show">{{message}}</h2>
+    <h2>{{message}}</h2>
+    <h3>{{age}}</h3>
   </div>
 
   <script src="https://unpkg.com/vue@next"></script>
@@ -19,13 +20,14 @@
     const app = Vue.createApp({
       data() {
         return {
-          message: 'hello world',
-          show: false
-        }
+          message: 'hello Vue3',
+          age: 8
+        };
       }
     });
-    const vm = app.mount('#app')
+    const vm = app.mount("#app");
   </script>
+
 </body>
 
 </html>

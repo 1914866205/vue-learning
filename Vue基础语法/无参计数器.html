@@ -5,12 +5,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>v-if和v-show指令</title>
+  <title>无参计数器</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+
+    button {
+      margin: 5px;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
-    <h2 v-show="show">{{message}}</h2>
+    <h2 v-cloak>counter：{{counter}}</h2>
+    <button @click="incr()">+</button>
+    <button @click="desc()">-</button>
   </div>
 
   <script src="https://unpkg.com/vue@next"></script>
@@ -19,9 +30,16 @@
     const app = Vue.createApp({
       data() {
         return {
-          message: 'hello world',
-          show: false
+          counter: 0
         }
+      },
+      methods: {
+        incr() {
+          this.counter++;
+        },
+        desc() {
+          this.counter--;
+        },
       }
     });
     const vm = app.mount('#app')

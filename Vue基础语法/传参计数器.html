@@ -5,28 +5,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>计数器</title>
+  <title>传参计数器</title>
   <style>
     [v-cloak] {
       display: none;
     }
 
     button {
-      display: block;
-      margin: 10px;
+      margin: 5px;
     }
   </style>
 </head>
 
 <body>
-  <div id="root">
+  <div id="app">
     <h2 v-cloak>counter：{{counter}}</h2>
-    <button @click="counter++">增加</button>
-    <button @click="counter--">减少</button>
-    <button v-on:click="alert('111')" id="btn">点击弹出</button>
-
-    <button @click="increasement(step)">增加</button>
-    <button @click="decreasement(step * 2,$event)">减少/带事件源</button>
+    <button @click="incr(step)">+2</button>
+    <button @click="desc(step,$event)">-2</button>
   </div>
 
   <script src="https://unpkg.com/vue@next"></script>
@@ -40,16 +35,19 @@
         }
       },
       methods: {
-        increasement(n) {
-          this.counter = this.counter + n;
+        incr(n) {
+          this.counter += n;
         },
-        decreasement(n, event) {
-          this.counter = this.counter - n;
-          console.log(event.target);
+        desc(n, event) {
+          this.counter = this.counter - n
+          console.log(event)
         }
+        // desc(n) {
+        //   this.counter -= n;
+        // },
       }
     });
-    const vm = app.mount('#root')
+    const vm = app.mount('#app')
   </script>
 </body>
 

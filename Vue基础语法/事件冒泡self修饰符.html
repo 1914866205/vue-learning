@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件冒泡self修饰符</title>
+  <style>
+    #parent {
+      width: 200px;
+      height: 200px;
+      background-color: rgb(74, 138, 197);
+    }
+
+    #child {
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      background-color: rgb(212, 219, 115);
+      margin-left: 50px;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="parent" @click.self="parentMethod">
+      父元素
+      <div id="child" @click="childMethod">
+        子元素
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+        }
+      },
+      methods: {
+        parentMethod() {
+          alert('父元素')
+        },
+        childMethod() {
+          alert('子元素')
+        }
+      }
+    });
+    const vm = app.mount('#app')
+  </script>
+</body>
+
+</html>

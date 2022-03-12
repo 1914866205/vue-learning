@@ -6,24 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue插值表达式</title>
+  <style>
+    body {
+      background-color: rgb(81, 146, 184);
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root">
-    <!-- 用插值直接显示变量 -->
-    <p>{{firstName}} {{lastName}} </p>
-    <!-- 使用.访问变量的属性 -->
-    <p>{{firstName.length}}</p>
-    <!-- 字符串的拼接 -->
-    <p>{{firstName + '-----' + lastName}} </p>
-    <!-- 简单的算术运算 -->
-    <p>{{count * 2}}</p>
-    <!-- 三目运算 -->
-    <p>{{firstName === 'Stephen'? '真棒':'还好'}}</p>
-    <!-- 调用自定义函数 -->
-    <p>{{customMethod(lastName)}}</p>
-    <!-- 调用JS函数，生成10以内的随机数 -->
-    <p></p>
+  <div id="app">
+    <p>{{firstName}} {{lastName}} （用插值直接显示变量） </p>
+    <p>{{firstName.length}} （使用.访问变量的属性） </p>
+    <p>{{firstName + '-----' + lastName}} （字符串的拼接）</p>
+    <p>{{count * 2}} （简单的算术运算）</p>
+    <p>{{firstName === 'Stephen'? '真棒':'还好'}} （三目运算）</p>
+    <h2>{{lastName.split('rr').reverse().join(',')}}（使用Javascript函数）</h2>
+    <p>{{customMethod(lastName)}} （调用自定义函数）</p>
   </div>
 
   <script src="https://unpkg.com/vue@next"></script>
@@ -44,7 +42,7 @@
       }
     });
 
-    const vm = app.mount('#root')
+    const vm = app.mount('#app')
   </script>
 </body>
 

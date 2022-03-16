@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>函数式编程</title>
+  </head>
+
+  <body>
+    <div id="app">{{totalPrice()}}</div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "你好",
+          };
+        },
+        methods: {
+          totalPrice() {
+            const nums = [10, 9, 21, 16, 7];
+            let total = nums
+              .filter((x) => x < 10)
+              .map((x) => x * 2)
+              .reduce((pre, n) => pre + n);
+            console.log(total);
+            return total;
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

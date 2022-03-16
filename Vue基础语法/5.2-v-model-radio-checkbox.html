@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>v-model绑定radio和checkbox</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 单选按钮 -->
+      <h2>选择性别</h2>
+      <h3>你的选择是：{{gender}}</h3>
+
+      <label for="male">
+        <input type="radio" id="male" value="male" v-model="gender" />
+        male
+      </label>
+
+      <label for="female">
+        <input
+          type="radio"
+          id="female"
+          value="female"
+          v-model="gender"
+        />female</label
+      >
+
+      <hr />
+      <!-- 复选框 -->
+      <h2>选择技术栈</h2>
+      <h3>你的选择是：{{checks}}</h3>
+      <label for="SpringBoot">
+        <input
+          type="checkbox"
+          id="SpringBoot"
+          value="SpringBoot"
+          v-model="checks"
+        />
+        SpringBoot
+      </label>
+
+      <label for="Vue">
+        <input type="checkbox" id="Vue" value="Vue" v-model="checks" />
+        Vue
+      </label>
+
+      <label for="Linux">
+        <input type="checkbox" id="Linux" value="Linux" v-model="checks" />
+        Linux
+      </label>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            gender: "male",
+            checks: ["SpringBoot"],
+          };
+        },
+      });
+      let vm = app.mount("#app");
+    </script>
+  </body>
+</html>

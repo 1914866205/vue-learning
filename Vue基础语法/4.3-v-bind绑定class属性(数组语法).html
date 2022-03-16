@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>v-bind绑定class属性(数组语法)</title>
+    <style>
+      h2 {
+        width: 500px;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+      }
+      .blue {
+        color: blue;
+      }
+      .red {
+        color: red;
+      }
+      .bold {
+        font-weight: 800;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <h2 :class="cssArray">绑定class属性(数组语法)</h2>
+      <button @click="changeColor">切换颜色</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            cssArray: ["bold", "blue"],
+          };
+        },
+        methods: {
+          changeColor() {
+            //如果当前不是蓝色，则把当前颜色弹出数组，将blue样式压入数组
+            if (this.cssArray[1] !== "blue") {
+              this.cssArray.pop();
+              this.cssArray.push("blue");
+            } else {
+              // 当前就是蓝色，那就换成红色
+              this.cssArray.pop();
+              this.cssArray.push("red");
+            }
+          },
+        },
+      });
+      let vm = app.mount("#app");
+    </script>
+  </body>
+
+  <html></html>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>属性侦听的深入学习</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <input v-model.lazy="player.firstName" type="text" />
+      <input v-model.lazy="player.lastName" type="text" />
+      <h2>全名是：{{player.fullName}}</h2>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            player: {
+              firstName: "",
+              lastName: "",
+              fullName: "",
+            },
+          };
+        },
+        watch: {
+          // step 1
+          // console.log被调用了2次，如果在handler方法里面做异步ajax操作，这显然会增加接口服务的压力
+          // 经过试验，与侦听对象属性的个数无关，视图层绑定的数据个数无关，与lazy修饰符无关,也许是一个bug?
+          // 那尽量避开换条路走 ，见 step2
+          player: {
+            handler(newValue, oldValue) {
+              console.log("handler被调用");
+              this.player.fullName =
+                newValue.firstName + " " + oldValue.lastName;
+            },
+            // 页面加载完毕就触发handler（数据初始化）
+            // immediate: true,
+            // 可以深度检测到player对象属性值的变化
+            deep: true,
+          },
+          //step2 :侦听对象的所有属性变化，使用deep:true
+          // 如果我们只是想侦听对象某一个属性，该怎么办？
+          //侦听对象player的属性firstName，用引号括起来，不用加deep：true，然后也不会有handler方法被重复调用的问题
+          "player.firstName": function () {
+            console.log("player.firstName-handler函数被调用");
+          },
+        },
+      });
+      let vm = app.mount("#app");
+    </script>
+  </body>
+
+  <html></html>
+</html>

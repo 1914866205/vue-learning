@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>v-bind绑定class属性(对象语法)</title>
+    <style>
+      h2 {
+        width: 500px;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+      }
+      .blue {
+        color: blue;
+      }
+      .red {
+        color: red;
+      }
+      /* .green {
+        color: green;
+      }
+      .grey {
+        border: 1px solid grey;
+      } */
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- <h2 class="blue red">HTML传统写法</h2> -->
+      <!-- 用一个布尔值决定某个样式是否生效 -->
+      <!-- <h2 class="grey" :class="{blue:isBlue,red:isRed}">
+        动态样式绑定-绑定class属性
+      </h2> -->
+
+      <!-- 点击按钮，实现文字颜色的切换 -->
+      <h2 :class="h2Class">点击按钮，实现文字颜色的切换</h2>
+      <button @click="changeColor">文字颜色的切换</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            isBlue: true,
+            isRed: false,
+          };
+        },
+        methods: {
+          changeColor() {
+            this.isBlue = !this.isBlue;
+            this.isRed = !this.isRed;
+          },
+        },
+        computed: {
+          h2Class() {
+            return { blue: this.isBlue, red: this.isRed };
+          },
+        },
+      });
+      let vm = app.mount("#app");
+    </script>
+  </body>
+
+  <html></html>
+</html>

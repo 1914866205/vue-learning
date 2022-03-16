@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>v-on事件监听的基本用法</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <h2>点击次数：{{counter}}</h2>
+      <button v-on:click="incr(step)">+</button>
+      <button v-on:click="decr(step,$event)">-</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            counter: 0,
+            step: 2,
+          };
+        },
+        methods: {
+          incr(n) {
+            this.counter = this.counter + n;
+          },
+          decr(n, event) {
+            this.counter = this.counter - n;
+            console.log(event);
+          },
+        },
+      });
+      let vm = app.mount("#app");
+    </script>
+  </body>
+
+  <html></html>
+</html>

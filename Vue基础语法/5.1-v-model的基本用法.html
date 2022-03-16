@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>v-model基本用法</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- v-model双向绑定 -->
+      <input type="text" v-model="message" />
+      <h2>输入的内容是：{{message}}</h2>
+      <hr />
+      <!-- 等价写法 -->
+      <input type="text" :value="info" @input="setInfo($event)" />
+      <h2>输入的内容是：{{info}}</h2>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data() {
+          return {
+            message: "",
+            info: "",
+          };
+        },
+        methods: {
+          setInfo(event) {
+            this.info = event.target.value;
+          },
+        },
+      });
+      let vm = app.mount("#app");
+    </script>
+  </body>
+
+  <html></html>
+</html>

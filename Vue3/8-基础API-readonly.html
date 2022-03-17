@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础API-readonly()</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>original:{{original}}</p>
+        <p>copy:{{copy}}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const { createApp, reactive, readonly } = Vue;
+        const App = {
+            setup() {
+                const original = reactive({ count: 0 });
+                const copy = readonly(original);
+                // 这里 original.count 会增加 1，copy.count 也会增加 1
+                original.count++;
+                // 因为是 readonly，copy.count 也不会增加
+                copy.count++; // warning!
+                return {
+                    copy,
+                    original,
+                };
+            },
+        };
+        createApp(App).mount('#app');
+    </script>
+</body>
+
+<html>

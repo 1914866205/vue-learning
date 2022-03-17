@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础API-setup()</title>
+</head>
+
+<body>
+    <div id="app">
+        <p @click="printInfo">{{msg}}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const { createApp, ref } = Vue;
+        const App = {
+            setup() {
+                const msg = ref('Vue 3.0!');
+                const printInfo = () => {
+                    alert('Result is ' + msg.value);
+                };
+                return {
+                    msg,
+                    printInfo,
+                };
+            },
+        };
+        createApp(App).mount('#app');
+    </script>
+</body>
+
+<html>

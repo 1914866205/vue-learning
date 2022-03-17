@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础API-ref()和reactive()</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 直接可以使用 count 属性 -->
+        <!-- 如果没有使用 roRefs，会直接返回 number，那么就得通过number.count 来访问数据-->
+        <p @click="printInfo">reactive {{count}}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // 导入 reactive
+        const { createApp, ref, reactive, toRefs } = Vue;
+        const App = {
+            setup() {
+                // 函数接收一个普通的对象，返回一个响应的数据对象。
+                const number = reactive({ count: 0 });
+                const printInfo = () => {
+                    number.count++;
+                };
+                return {
+                    // 使用 toRefs 给数据对象进行包装，让它的数据保持响应式
+                    ...toRefs(number),
+                    printInfo,
+                };
+            },
+        };
+        createApp(App).mount('#app');
+    </script>
+</body>
+
+<html>

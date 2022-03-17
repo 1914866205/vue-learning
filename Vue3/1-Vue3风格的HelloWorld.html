@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue3风格的Hello World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <p>{{reversedMsg}}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const { createApp, ref, computed } = Vue;
+        const App = {
+            setup() {
+                const msg = ref('Hello,World!');
+                const reversedMsg = computed(() =>
+                    msg.value.split(',').reverse().join(',')
+                );
+                return {
+                    msg,
+                    reversedMsg,
+                };
+            },
+        };
+        createApp(App).mount('#app');
+    </script>
+</body>
+
+</html>

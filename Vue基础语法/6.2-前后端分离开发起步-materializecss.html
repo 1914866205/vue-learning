@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>前后端分离开发起步-materializecss</title>
+</head>
+
+<body>
+    <div id="app">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Vue</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m4" v-for="(item,index) in list" :key="index">
+                    <div class="card">
+                        <div class="card-image">
+                            <img :src="item.thumbnail" height="260">
+                            <span class="card-title">{{item.title}}</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content">
+                            <p>{{item.content}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                list: []
+            },
+            created() {
+                axios.get('http://localhost:8080/api/v1/articles/all')
+                    .then(res => {
+                        console.log(res.data.data);
+                        this.list = res.data.data;
+                    })
+            },
+        })
+    </script>
+</body>
+
+</html>

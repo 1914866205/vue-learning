@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件无法直接访问Vue实例的data数据</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+
+    <template id="MyComponent">
+        <p>{{message}}</p>
+    </template>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: 'Vue实例中的数据'
+                }
+            },
+            components: {
+                MyComponent: {
+                    template: '#MyComponent',
+                }
+            }
+        });
+        const vm = app.mount('#app');
+    </script>
+</body>
+
+<html>

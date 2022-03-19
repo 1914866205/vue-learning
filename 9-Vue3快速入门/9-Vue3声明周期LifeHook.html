@@ -1,0 +1,69 @@
+<!-- LifeHook.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue3声明周期LifeHook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="message" name="" id="" />
+        <div>{{message}}</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const {
+            createApp,
+            ref,
+            onBeforeMount,
+            onMounted,
+            onBeforeUpdate,
+            onUpdated,
+            onBeforeUnmount,
+            onUnmounted,
+            onRenderTracked,
+            onRenderTriggered,
+        } = Vue;
+        const App = {
+            setup() {
+                const message = ref('LifeCycle Hook!');
+                console.log('setup');
+                onBeforeMount(() => {
+                    console.log('onBeforeMount');
+                });
+                onMounted(() => {
+                    console.log('onMounted');
+                });
+                onBeforeUpdate(() => {
+                    console.log('onBeforeUpdate');
+                });
+                onUpdated(() => {
+                    console.log('onUpdated');
+                });
+                onBeforeUnmount(() => {
+                    console.log('onBeforeUnmount');
+                });
+                onUnmounted(() => {
+                    console.log('onUnmounted');
+                });
+                onRenderTracked(() => {
+                    console.log('onRenderTracked');
+                });
+                onRenderTriggered(() => {
+                    console.log('onRenderTriggered');
+                });
+                return {
+                    message,
+                };
+            },
+        };
+        createApp(App).mount('#app');
+    </script>
+</body>
+
+</html>

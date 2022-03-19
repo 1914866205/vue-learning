@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父子组件嵌套</title>
+</head>
+
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+
+    <template id="Child">
+        <p>子组件视图模板</p>
+    </template>
+
+    <template id="Parent">
+        <p>父组件视图模板</p>
+        <child></child>
+    </template>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            components: {
+                Parent: {
+                    template: '#Parent',
+                    components: {
+                        Child: {
+                            template: '#Child'
+                        }
+                    }
+                }
+            }
+        });
+        const vm = app.mount('#app');
+    </script>
+</body>
+
+<html>

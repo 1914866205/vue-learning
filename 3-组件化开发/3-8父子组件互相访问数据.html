@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父子组件互相访问数据</title>
+</head>
+
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+
+    <template id="Child">
+        <p>{{childMsg}}</p>
+        <button @click="parentInfo()">打印父组件信息</button>
+    </template>
+
+    <template id="Parent">
+        <p>{{parentMsg}}</p>
+        <button @click="childInfo()">打印子组件信息</button>
+        <child ref="childRef"></child>
+    </template>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            components: {
+                Parent: {
+                    template: '#Parent',
+                    data() {
+                        return {
+                            parentMsg: '父组件数据'
+                        }
+                    },
+                    methods: {
+                        childInfo() {
+                            alert(this.$refs.childRef.childMsg);
+                        }
+                    },
+                    components: {
+                        Child: {
+                            template: '#Child',
+                            data() {
+                                return {
+                                    childMsg: '子组件数据'
+                                }
+                            },
+                            methods: {
+                                parentInfo() {
+                                    alert(this.$parent.parentMsg);
+                                }
+                            },
+                        }
+                    }
+                }
+            }
+        });
+        const vm = app.mount('#app');
+    </script>
+</body>
+
+<html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>如何实现组件的切换</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 登录、注册切换按钮 -->
+        <a href="" @click.prevent="isLogin=!isLogin">登录</a>
+        <a href="" @click.prevent="isLogin=!isLogin">注册</a>
+
+        <!-- 登录组件和注册组件-->
+        <login v-if="isLogin"></login>
+        <register v-else="isLogin"></register>
+    </div>
+
+    <template id="Login">
+        <h3>登录组件</h3>
+    </template>
+
+    <template id="Register">
+        <h3>注册组件</h3>
+    </template>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isLogin: true,
+                    comName: 'Login'
+                }
+            },
+        });
+
+        app.component('Login', {
+            template: '#Login'
+        })
+
+        app.component('Register', {
+            template: '#Register'
+        })
+        const vm = app.mount('#app');
+    </script>
+</body>
+
+<html>

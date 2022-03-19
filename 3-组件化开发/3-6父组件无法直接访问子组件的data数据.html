@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue实例无法直接访问子组件的data数据.</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>父组件访问子组件的数据：{{msg}}</h2>
+        <my-component></my-component>
+    </div>
+
+    <template id="MyComponent">
+        <p>{{msg}}</p>
+    </template>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            components: {
+                MyComponent: {
+                    template: '#MyComponent',
+                    data() {
+                        return {
+                            msg: '子组件的数据'
+                        }
+                    }
+                }
+            }
+        });
+        const vm = app.mount('#app');
+    </script>
+</body>
+
+<html>

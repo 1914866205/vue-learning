@@ -1,9 +1,7 @@
 <!--CommentApp.vue-->
 <template>
-  <div class="container">
-    <CommentInput @inputinfo="receiveInfo" />
-    <CommentList :custom="Comments" :deleteFunction="deleteFunction" />
-  </div>
+  <CommentInput @inputinfo="receiveInfo" />
+  <CommentList :custom="Comments" :deleteFunction="deleteFunction" />
 </template>
 
 <script>

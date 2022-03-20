@@ -1,0 +1,39 @@
+<!-- dom.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+</head>
+
+<body>
+    <div id="app">
+        <p ref="p">获取DOM</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // 导入 reactive
+        const { createApp, ref, onMounted } = Vue;
+        const APP = {
+            setup() {
+                const p = ref(null);
+
+                onMounted(() => {
+                    // 初始渲染后，DOM 元素将被分配给 ref
+                    // p.value 是原生 DOM 对象
+                    console.log(p.value);
+                });
+                return {
+                    p,
+                };
+            },
+        };
+        createApp(APP).mount('#app');
+    </script>
+</body>
+
+</html>

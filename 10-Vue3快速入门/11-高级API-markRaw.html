@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高级API-markRaw</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ msg }}</p>
+        <p>{{ op }}</p>
+        <button @click="setmsg">set</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // 导入 reactive
+        const { isReactive, createApp, markRaw, reactive } = Vue;
+        const APP = {
+            setup() {
+                const msg = markRaw({
+                    value: 'markraw',
+                });
+                // 作为参照
+                const op = reactive({
+                    value: 'reactive',
+                });
+
+                const setmsg = () => {
+                    console.log('markRaw ' + isReactive(reactive(msg))); // false
+                    console.log('reactive ' + isReactive(op)); // true
+                    msg.value = '';
+                    console.log(msg); // 一个普通对象
+                    console.log(op); // 一个经过 Proxy 加工的响应式对象
+                };
+                return {
+                    msg,
+                    op,
+                    setmsg,
+                };
+            },
+        };
+        createApp(APP).mount('#app');
+    </script>
+</body>
+
+<html>

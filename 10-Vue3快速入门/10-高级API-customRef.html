@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高级API-customRef</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="getRef">触发 get</button>
+        <button @click="setRef">触发 set</button>
+        <p>ref : {{ msg }}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // 导入 customRef
+        const { customRef, createApp } = Vue;
+        const APP = {
+            setup() {
+                // 显式控制其依赖项跟踪和更新触发
+                function TestcustomRef(value) {
+                    return customRef((track, trigger) => {
+                        return {
+                            get() {
+                                track();
+                                // 触发 get 后，控制台打印信息
+                                console.log('get' + value);
+                                return value;
+                            },
+                            set(newValue) {
+                                value = newValue + ' set';
+                                // 触发 set 后，控制台打印信息
+                                console.log('set' + value);
+                                // 可以通过这一步控制视图更新时间
+                                setTimeout(() => {
+                                    trigger();
+                                }, 1000);
+                            },
+                        };
+                    });
+                }
+
+                const msg = TestcustomRef('原始值');
+                const setRef = () => {
+                    msg.value = '更新设置值';
+                };
+                const getRef = () => {
+                    console.log(msg.value);
+                };
+
+                return {
+                    setRef,
+                    getRef,
+                    msg,
+                };
+            },
+        };
+        createApp(APP).mount('#app');
+    </script>
+</body>
+
+<html>

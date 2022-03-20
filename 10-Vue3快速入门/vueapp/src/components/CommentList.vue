@@ -5,7 +5,7 @@
     :key="index"
     className="commentList"
   >
-    <comment-item :comment="one" :deleteFun="deleteFun" />
+    <comment-item :comment="one" :deleteFun="deleteFun" :index="index" />
   </div>
 </template>
 

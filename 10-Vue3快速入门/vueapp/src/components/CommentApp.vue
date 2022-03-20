@@ -40,7 +40,7 @@ export default {
       if (!e.username) return alert("请输入用户名");
       if (!e.content) return alert("请输入评论内容");
       Comments.value.push(e);
-      // 每次 Comments 修改，都会重新进行存储
+      // 每次 Comments 修改都会重新进行存储
       saveData(Comments);
     };
     // 在挂载开始之前，获取存储的数据

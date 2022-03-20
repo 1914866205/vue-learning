@@ -5,6 +5,7 @@
       <span>{{ props.comment.username }} </span>：
     </div>
     <div>{{ props.comment.content }}</div>
+    <!-- 添加删除入口 -->
     <span className="delete" @click="deleteCom">
       <img src="../assets/delete.png" />
     </span>
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import { onMounted } from "vue";
 export default {
   name: "CommentItem",
   props: {
@@ -21,6 +23,10 @@ export default {
     index: Number,
   },
   setup(props) {
+    onMounted(() => {
+      // 打印获取 props
+      console.log(props);
+    });
     // 删除点击事件
     const deleteCom = () => {
       if (props.deleteFun) {

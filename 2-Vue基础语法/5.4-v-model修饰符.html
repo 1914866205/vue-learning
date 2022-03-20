@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>v-model修饰符</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <input v-model.lazy="name" type="text" />
-      <h2>输入的姓名：{{name}} ，类型是：{{typeof name}}</h2>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>v-model修饰符</title>
+</head>
 
-      <input v-model.number="age" type="text" />
-      <h2>输入的年龄：{{age}} ，类型是：{{typeof age}}</h2>
+<body>
+  <div id="app">
+    <input v-model.lazy="name" type="text" />
+    <h2>输入的姓名：{{name}} ，类型是：{{typeof name}}</h2>
 
-      <input v-model.trim="info" type="text" />
-      <h2>输入的内容：{{info}} ，类型是：{{typeof info}}</h2>
-    </div>
+    <input v-model.number="age" type="text" />
+    <h2>输入的年龄：{{age}} ，类型是：{{typeof age}}</h2>
 
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-      let app = Vue.createApp({
-        data() {
-          return {
-            name: "",
-            age: null,
-            info: "",
-          };
-        },
-        created() {},
-        mounted() {},
-        methods: {},
-      });
-      let vm = app.mount("#app");
-    </script>
-  </body>
+    <input v-model.trim="info" type="text" />
+    <h2>输入的内容：{{info}} ，类型是：{{typeof info}}</h2>
+  </div>
 
-  <html></html>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          name: "",
+          age: null,
+          info: "",
+        };
+      },
+      created() { },
+      mounted() { },
+      methods: {},
+    });
+  </script>
+</body>
+
+<html>
+
+</html>
+
 </html>

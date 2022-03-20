@@ -17,9 +17,10 @@
         <p>{{message}}</p>
     </template>
 
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script>
-        const app = Vue.createApp({
+        const app = new Vue({
+            el: "#app",
             data() {
                 return {
                     message: 'Vue实例中的数据'
@@ -31,7 +32,6 @@
                 }
             }
         });
-        const vm = app.mount('#app');
     </script>
 </body>
 

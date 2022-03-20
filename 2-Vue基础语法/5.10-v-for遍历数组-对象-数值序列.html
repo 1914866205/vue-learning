@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>v-for遍历数组-对象-数值序列</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <ul>
-        <li v-for="(item,index) in players">
-          数组下标:{{index}} --- id：{{item.id}} --- 姓名：{{item.name}} ---
-         年龄：{{item.age}}
-        </li>
-      </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>v-for遍历数组-对象-数值序列</title>
+</head>
 
-      <ul>
-        <li v-for="(val, key, i) in bestplayer">
-          {{val}} --- {{key}} --- {{i}}
-        </li>
-      </ul>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item,index) in players">
+        数组下标:{{index}} --- id：{{item.id}} --- 姓名：{{item.name}} ---
+        年龄：{{item.age}}
+      </li>
+    </ul>
 
-      <h3 v-for="i in 10">这是第 {{i}} 个h3标签</h3>
-    </div>
+    <ul>
+      <li v-for="(val, key, i) in bestplayer">
+        {{val}} --- {{key}} --- {{i}}
+      </li>
+    </ul>
 
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-      let app = Vue.createApp({
-        data() {
-          return {
-            message: "VUE",
-            players: [
-              { id: 1, name: "aaa", age: 20 },
-              { id: 2, name: "bbb", age: 21 },
-              { id: 3, name: "ccc", age: 22 },
-            ],
-            bestplayer: { name: "张三", age: 33 },
-          };
-        },
-      });
-      let vm = app.mount("#app");
-    </script>
-  </body>
+    <h3 v-for="i in 10">这是第 {{i}} 个h3标签</h3>
+  </div>
 
-  <html></html>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          message: "VUE",
+          players: [
+            { id: 1, name: "aaa", age: 20 },
+            { id: 2, name: "bbb", age: 21 },
+            { id: 3, name: "ccc", age: 22 },
+          ],
+          bestplayer: { name: "张三", age: 33 },
+        };
+      },
+    });
+  </script>
+</body>
+
+<html>
+
+</html>
+
 </html>

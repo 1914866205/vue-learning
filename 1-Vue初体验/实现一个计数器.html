@@ -9,24 +9,27 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="app">
+    <h2>{{count}}</h2>
+  </div>
 
-  <script src="https://unpkg.com/vue@next"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
   <script>
-    Vue.createApp({
+    const app = new Vue({
+      el: '#app',
       data() {
-        return { content: 1 };
+        return {
+          count: 1
+        }
       },
       mounted() {
         setInterval(() => {
-          this.$data.content += 1;
+          this.$data.count += 1;
         }, 1000);
-      },
-      template: `
-                <h2>{{content}}</h2>
-             `,
-    }).mount("#root");
+      }
+    });
   </script>
 </body>
 

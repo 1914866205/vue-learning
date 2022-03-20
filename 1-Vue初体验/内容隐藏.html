@@ -9,30 +9,28 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="app">
+    <p v-if="show">hello world</p>
+    <button v-on:click="handleBtnClick">显示/隐藏</button>
+  </div>
 
-  <script src="https://unpkg.com/vue@next"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
   <script>
-    Vue.createApp({
+    const app = new Vue({
+      el: '#app',
       data() {
         return {
           show: true
-        };
+        }
       },
       methods: {
         handleBtnClick() {
           this.show = !this.show;
         },
-      },
-      template: `
-        <div>
-          <p v-if="show">hello world</p>
-          <button v-on:click="handleBtnClick">显示/隐藏</button>
-        </div>
-      `,
-    }).mount("#root");
-
+      }
+    });
   </script>
 </body>
 

@@ -1,61 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <input v-model="firstName" type="text" />
-      <input v-model="lastName" type="text" />
-      <!-- 使用计算属性的结果 -->
-      <h2>全名：{{fullName}}</h2>
-      <h2>全名：{{fullName}}</h2>
-      <h2>全名：{{fullName}}</h2>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
 
-      <hr />
-      <!-- 调用方法的结果 -->
-      <h2>全名：{{getFullName()}}</h2>
-      <h2>全名：{{getFullName()}}</h2>
-      <h2>全名：{{getFullName()}}</h2>
-    </div>
+<body>
+  <div id="app">
+    <input v-model="firstName" type="text" />
+    <input v-model="lastName" type="text" />
+    <!-- 使用计算属性的结果 -->
+    <h2>全名：{{fullName}}</h2>
+    <h2>全名：{{fullName}}</h2>
+    <h2>全名：{{fullName}}</h2>
 
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-      let app = Vue.createApp({
-        data() {
-          return {
-            firstName: "",
-            lastName: "",
-          };
-        },
-        computed: {
-          // 实际是个简写
-          //   fullName: function () {
-          //     console.log("计算属性被调用");
-          //     return this.firstName + "   " + this.lastName;
-          //   },
+    <hr />
+    <!-- 调用方法的结果 -->
+    <h2>全名：{{getFullName()}}</h2>
+    <h2>全名：{{getFullName()}}</h2>
+    <h2>全名：{{getFullName()}}</h2>
+  </div>
 
-          // 完整写法，显式的get语法
-          fullName: {
-            get() {
-              return this.firstName + "   " + this.lastName;
-            },
-          },
-        },
-        methods: {
-          getFullName() {
-            console.log("方法被调用");
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          firstName: "",
+          lastName: "",
+        };
+      },
+      computed: {
+        // 实际是个简写
+        //   fullName: function () {
+        //     console.log("计算属性被调用");
+        //     return this.firstName + "   " + this.lastName;
+        //   },
+
+        // 完整写法，显式的get语法
+        fullName: {
+          get() {
             return this.firstName + "   " + this.lastName;
           },
         },
-      });
-      let vm = app.mount("#app");
-    </script>
-  </body>
+      },
+      methods: {
+        getFullName() {
+          console.log("方法被调用");
+          return this.firstName + "   " + this.lastName;
+        },
+      },
+    });
+  </script>
+</body>
 
-  <html></html>
+<html>
+
+</html>
+
 </html>

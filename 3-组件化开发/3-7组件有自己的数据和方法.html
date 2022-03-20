@@ -6,26 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>组件有自己的数据和方法</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: #89b2d8;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 
 <body>
+
     <div id="app">
-       <h2>父组件引用子组件</h2>
+        <h2>{{message}}</h2>
         <my-component></my-component>
     </div>
 
     <template id="MyComponent">
-        <p>{{msg}}</p>
-        <p>{{count}}</p>
-        <button @click="add">点击</button>
+        <div class="box">
+            <p>{{msg}}</p>
+            <p>{{count}}</p>
+            <button @click="add">点击</button>
+        </div>
     </template>
 
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
     <script>
-        const app = Vue.createApp({
+        const app = new Vue({
+            el: "#app",
             data() {
                 return {
-                    message: 'Vue实例中的数据'
+                    message: "Vue实例中的数据"
                 }
             },
             components: {
@@ -33,8 +48,8 @@
                     template: '#MyComponent',
                     data() {
                         return {
-                            msg: '组件自己的数据',
                             count: 1,
+                            msg: "组件中的数据"
                         }
                     },
                     methods: {
@@ -45,7 +60,6 @@
                 }
             }
         });
-        const vm = app.mount('#app');
     </script>
 </body>
 

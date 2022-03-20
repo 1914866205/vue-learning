@@ -18,10 +18,10 @@
         <h3>模板视图与Vue实例定义分离</h3>
     </template>
 
-
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script>
-        const app = Vue.createApp({
+        const app = new Vue({
+            el: "#app",
             components: {
                 MyComponent: {
                     template: `<h3>局部组件内容</h3>`
@@ -31,7 +31,6 @@
                 }
             }
         });
-        const vm = app.mount('#app');
     </script>
 </body>
 

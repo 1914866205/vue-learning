@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>v-for指令的key属性</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <label
-        >添加玩家
-        <input
-          v-model.lazy="newPlayerName"
-          type="text"
-          @keyup.enter="addPlayer"
-        />
-      </label>
-      <ul>
-        <li v-for="item in players" :key="item.id">
-          <input type="checkbox" /> id：{{item.id}} --- 姓名：{{item.name}} ---
-          年龄：{{item.age}}
-        </li>
-      </ul>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>v-for指令的key属性</title>
+</head>
 
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-      let app = Vue.createApp({
-        data() {
-          return {
-            players: [
-              { id: 1, name: "aaa", age: 20 },
-              { id: 2, name: "bbb", age: 21 },
-              { id: 3, name: "ccc", age: 22 },
-            ],
-            newPlayerName: "",
-          };
+<body>
+  <div id="app">
+    <label>添加玩家
+      <input v-model.lazy="newPlayerName" type="text" @keyup.enter="addPlayer" />
+    </label>
+    <ul>
+      <li v-for="item in players" :key="item.id">
+        <input type="checkbox" /> id：{{item.id}} --- 姓名：{{item.name}} ---
+        年龄：{{item.age}}
+      </li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          players: [
+            { id: 1, name: "aaa", age: 20 },
+            { id: 2, name: "bbb", age: 21 },
+            { id: 3, name: "ccc", age: 22 },
+          ],
+          newPlayerName: "",
+        };
+      },
+      methods: {
+        addPlayer() {
+          this.players.unshift({
+            id: 4,
+            name: this.newPlayerName,
+            age: 23,
+          });
         },
-        methods: {
-          addPlayer() {
-            this.players.unshift({
-              id: 4,
-              name: this.newPlayerName,
-              age: 23,
-            });
-          },
-        },
-      });
-      let vm = app.mount("#app");
-    </script>
-  </body>
+      },
+    });
+  </script>
+</body>
 
-  <html></html>
+<html>
+
+</html>
+
 </html>

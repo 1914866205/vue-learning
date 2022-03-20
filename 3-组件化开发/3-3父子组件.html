@@ -13,30 +13,29 @@
         <counter-parent></counter-parent>
     </div>
 
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
     <script>
-        const app = Vue.createApp({
-
-        });
-
-
-        app.component('CounterParent', {
-            template: `<counter/>`
-        })
-
-
-        app.component('Counter', {
+        Vue.component("Counter", {
+            template: `<div>
+                 {{count}}
+                 <button @click="count++">点击</button>
+                 </div>`,
             data() {
                 return {
                     count: 1
                 }
-            },
-            template: `<div>
-                 {{count}}
-                 <button @click="count++">点击</button>
-                 </div>`
-        })
-        const vm = app.mount('#app');
+            }
+        });
+
+        Vue.component("CounterParent", {
+            template: `<counter/>`,
+        });
+
+        const app = new Vue({
+            el: "#app",
+        });
+
     </script>
 </body>
 

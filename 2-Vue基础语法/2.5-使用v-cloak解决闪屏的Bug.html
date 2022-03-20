@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>使用v-cloak解决闪屏的Bug</title>
-    <style>
-      /* v-cloak指令的样式：在DOM节点渲染完成之前不显示 */
-      [v-cloak] {
-        display: none;
-      }
-    </style>
-  </head>
 
-  <body>
-    <div id="app">
-      <h2 v-cloak>你好，{{message}}</h2>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>使用v-cloak解决闪屏的Bug</title>
+  <style>
+    /* v-cloak指令的样式：在DOM节点渲染完成之前不显示 */
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
 
-    <script src="https://unpkg.com/vue@next"></script>
+<body>
+  <div id="app">
+    <h2 v-cloak>你好，{{message}}</h2>
+  </div>
 
-    <script>
-      const app = Vue.createApp({
-        data() {
-          return {
-            message: "Vue3",
-          };
-        },
-      });
-      const vm = app.mount("#app");
-    </script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          message: "Vue2",
+        }
+      },
+    });
+  </script>
+</body>
+
 </html>

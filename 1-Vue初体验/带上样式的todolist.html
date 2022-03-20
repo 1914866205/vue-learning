@@ -31,14 +31,17 @@
     </div>
   </section>
 
-  <script src="https://unpkg.com/vue@next"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
   <script>
-    Vue.createApp({
+    const app = new Vue({
+      el: '#app',
       data() {
         return {
           inputValue: '',
           list: ['aaa', 'bbb'],
-        };
+        }
       },
       methods: {
         handleAddItem() {
@@ -46,7 +49,7 @@
           this.inputValue = '';
         },
       },
-    }).mount('#app');
+    });
   </script>
 </body>
 

@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>v-html指令实现html代码片段解析</title>
-    <style>
-      body {
-        background-color: rgb(81, 146, 184);
-      }
-    </style>
-  </head>
 
-  <body>
-    <div id="app">
-      <ul>
-        <!-- 错误的做法 -->
-        <li>{{age}}</li>
-        <li>{{link}}</li>
-        <!-- 正确的做法 -->
-        <li v-html="age"></li>
-        <li v-html="link"></li>
-      </ul>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>v-html指令实现html代码片段解析</title>
+  <style>
+    body {
+      background-color: rgb(81, 146, 184);
+    }
+  </style>
+</head>
 
-    <script src="https://unpkg.com/vue@next"></script>
+<body>
+  <div id="app">
+    <ul>
+      <!-- 错误的做法 -->
+      <li>{{age}}</li>
+      <li>{{link}}</li>
+      <!-- 正确的做法 -->
+      <li v-html="age"></li>
+      <li v-html="link"></li>
+    </ul>
+  </div>
 
-    <script>
-      const app = Vue.createApp({
-        data() {
-          return {
-            age: "<strong>13</strong>",
-            link: '<a href="https://www.baidu.com">百度一下</a>',
-          };
-        },
-      });
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-      const vm = app.mount("#app");
-    </script>
-  </body>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          age: "<strong>13</strong>",
+          link: '<a href="https://www.baidu.com">百度一下</a>',
+        }
+      },
+    });
+  </script>
+</body>
+
 </html>

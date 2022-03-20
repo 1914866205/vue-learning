@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue3实现todolist</title>
+  <style>
+    .finished {
+      text-decoration: line-through;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <input v-model="inputValue" />
+      <button v-on:click="handleAddItem">增加</button>
+      <ul>
+        <li v-for="(item, index) in list" :key="index" :class="{finished:item.finished}"
+          @click="item.finished=!item.finished">
+          {{item.title}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          inputValue: "",
+          list: [
+            {
+              title: "上课",
+              finished: true,
+            },
+            {
+              title: "打游戏",
+              finished: true,
+            },
+            {
+              title: "吃饭",
+              finished: false,
+            },
+          ],
+        }
+      },
+      methods: {
+        handleAddItem() {
+          const item = {
+            title: this.inputValue,
+            finished: false,
+          };
+          this.list.push(item);
+          this.inputValue = "";
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>

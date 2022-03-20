@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>v-model绑定select实现单选多选</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <h2>选择性别</h2>
-      <h3>你的选择是：{{gender}}</h3>
-      <select v-model="gender">
-        <option value="男">男</option>
-        <option value="女">女</option>
-      </select>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>v-model绑定select实现单选多选</title>
+</head>
 
-      <hr />
-      <h2>选择技术栈</h2>
-      <h3>你的选择是：{{checks}}</h3>
-      <select v-model="checks" multiple>
-        <option value="SpringBoot">SpringBoot</option>
-        <option value="Vue">Vue</option>
-        <option value="MySQL">MySQL</option>
-      </select>
-    </div>
+<body>
+  <div id="app">
+    <h2>选择性别</h2>
+    <h3>你的选择是：{{gender}}</h3>
+    <select v-model="gender">
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
 
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-      let app = Vue.createApp({
-        data() {
-          return {
-            gender: "男",
-            checks: ["SpringBoot"],
-          };
-        },
-      });
-      let vm = app.mount("#app");
-    </script>
-  </body>
+    <hr />
+    <h2>选择技术栈</h2>
+    <h3>你的选择是：{{checks}}</h3>
+    <select v-model="checks" multiple>
+      <option value="SpringBoot">SpringBoot</option>
+      <option value="Vue">Vue</option>
+      <option value="MySQL">MySQL</option>
+    </select>
+  </div>
 
-  <html></html>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          gender: "男",
+          checks: ["SpringBoot"],
+        };
+      },
+    });
+  </script>
+</body>
+
+<html>
+
+</html>
+
 </html>

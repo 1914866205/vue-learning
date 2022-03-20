@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vue3-图片组件练习</title>
+  <title>图片组件练习</title>
   <style>
     .container {
       margin: 0 auto;
@@ -36,13 +36,29 @@
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div class="container">
+      <img-card v-for="(item,index) in list" :key="index" :title="item.title" :src="item.url" :info="item.desc" />
+    </div>
+  </div>
 
-  <script src="https://unpkg.com/vue@next"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script>
-    // mvvm、vue实例，vue组件
-    const app = Vue.createApp({
+    const ImgCard = Vue.extend({
+      props: ["title", "src", "info"],
+      template: `
+          <div class="img-card">
+            <h2>{{title}}</h2>
+            <img :src="src">
+            <p>{{info}}</p>
+          </div>
+        `,
+    })
+
+    Vue.component("ImgCard", ImgCard);
+
+    const app = new Vue({
+      el: '#app',
       data() {
         return {
           list: [
@@ -62,31 +78,10 @@
               desc: '图片3图片3图片3图片3图片3',
             },
           ],
-        };
+        }
       },
-      template: `
-          <div class="container">
-              <img-card v-for="(item,index) of list"
-              :title="item.title"
-              :src="item.url" 
-              :info="item.desc"
-              />         
-          </div>
-         `,
     });
 
-    app.component("img-card", {
-      props: ["title", "src", "info"],
-      template: `
-          <div class="img-card">
-            <h2>{{title}}</h2>
-            <img :src="src">
-            <p>{{info}}</p>
-          </div>
-        `,
-    });
-
-    app.mount("#app");
   </script>
 </body>
 

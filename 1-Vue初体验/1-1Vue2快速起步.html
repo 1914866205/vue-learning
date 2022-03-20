@@ -22,9 +22,11 @@
       // 声明页面渲染的Vue实例的元素
       el: '#app',
       // 定义数据
-      data: {
-        message: 'hello Vue2',
-        age: 8
+      data() {
+        return {
+          message: 'hello Vue2',
+          age: 8
+        }
       }
     })
   </script>

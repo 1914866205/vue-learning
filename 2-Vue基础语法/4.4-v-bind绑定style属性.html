@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>v-bind绑定style属性</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <h2 :style="{'color': 'red', 'font-size' : fontSize + 'px'}">
-        style绑定对象
-      </h2>
-      <button @click="addFontSize">增大字体</button>
-      <hr />
-      <h2 :style="[style1,style2]">style绑定数组</h2>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>v-bind绑定style属性</title>
+</head>
 
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-      let app = Vue.createApp({
-        data() {
-          return {
-            fontSize: 70,
-            style1: {
-              color: "red",
-              "font-size": "40px",
-              "font-weight": "300",
-            },
-            style1: {
-              "background-color": "blue",
-              "font-style": "italic",
-            },
-          };
-        },
-        methods: {
-          addFontSize() {
-            this.fontSize++;
+<body>
+  <div id="app">
+    <h2 :style="{'color': 'red', 'font-size' : fontSize + 'px'}">
+      style绑定对象
+    </h2>
+    <button @click="addFontSize">增大字体</button>
+    <hr />
+    <h2 :style="[style1,style2]">style绑定数组</h2>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          fontSize: 40,
+          style1: {
+            color: "red",
+            "font-size": "40px",
+            "font-weight": "300",
           },
+          style2: {
+            "background-color": "blue",
+            "font-style": "italic",
+          },
+        }
+      },
+      methods: {
+        addFontSize() {
+          this.fontSize++;
         },
-      });
-      let vm = app.mount("#app");
-    </script>
-  </body>
+      },
+    });
+  </script>
+</body>
 
-  <html></html>
+<html>
+
+</html>
+
 </html>

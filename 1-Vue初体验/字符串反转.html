@@ -5,20 +5,26 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vue3实现字符串的反转</title>
+  <title>字符串的反转</title>
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="app">
+    <div>
+      <p>{{content}}</p>
+      <button v-on:click="handleBtnClick">反转</button>
+    </div>
+  </div>
 
-  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
   <script>
-    Vue.createApp({
+    const app = new Vue({
+      el: '#app',
       data() {
         return {
-          content: 'hello world',
-        };
+          content: "hello world",
+        }
       },
       methods: {
         handleBtnClick() {
@@ -26,13 +32,7 @@
           this.content = this.content.split('').reverse().join('');
         },
       },
-      template: `
-          <div>
-            <p>{{content}}</p>
-            <button v-on:click="handleBtnClick">反转</button>
-          </div>  
-        `,
-    }).mount('#root');
+    });
   </script>
 </body>
 

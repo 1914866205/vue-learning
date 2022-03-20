@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>计算属性的get和set</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <input v-model.lazy.trim="fullName" type="text" />
-      <h2>fullName是：{{fullName}}</h2>
-      <h2>firstName是：{{firstName}}</h2>
-      <h2>lastNamee是：{{lastName}}</h2>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>计算属性的get和set</title>
+</head>
 
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-      let app = Vue.createApp({
-        data() {
-          return {
-            firstName: "",
-            lastName: "",
-          };
-        },
-        computed: {
-          fullName: {
-            set(newValue) {
-              // set方法接收v-model的输入值：newValue
-              // 用空格分割，得到数组
-              const strArr = newValue.split(" ");
-              this.firstName = strArr[0];
-              this.lastName = strArr[1];
-            },
-            get() {
-              return this.firstName + "   " + this.lastName;
-            },
+<body>
+  <div id="app">
+    <input v-model.lazy.trim="fullName" type="text" />
+    <h2>fullName是：{{fullName}}</h2>
+    <h2>firstName是：{{firstName}}</h2>
+    <h2>lastNamee是：{{lastName}}</h2>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          firstName: "",
+          lastName: "",
+        };
+      },
+      computed: {
+        fullName: {
+          set(newValue) {
+            // set方法接收v-model的输入值：newValue
+            // 用空格分割，得到数组
+            const strArr = newValue.split(" ");
+            this.firstName = strArr[0];
+            this.lastName = strArr[1];
+          },
+          get() {
+            return this.firstName + "   " + this.lastName;
           },
         },
-      });
-      let vm = app.mount("#app");
-    </script>
-  </body>
+      },
+    });
+  </script>
+</body>
 
-  <html></html>
+<html>
+
+</html>
+
 </html>

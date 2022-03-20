@@ -1,13 +1,17 @@
 <!--CommentList.vue-->
 <template>
-  <div v-for="(one, index) in comments" :key="index" class="commentList">
-    <comment-item :comment="one" />
+  <div
+    v-for="(one, index) in props.custom"
+    :key="index"
+    className="commentList"
+  >
+    <comment-item :comment="one" :deleteFun="deleteFun" />
   </div>
 </template>
 
 <script>
-import { onMounted, ref, watchEffect } from "vue";
 import CommentItem from "./CommentItem";
+
 export default {
   name: "CommentList",
   components: {
@@ -18,18 +22,20 @@ export default {
       type: Array,
       default: () => [],
     },
+    // 定义 props.deledeleteFunction 是函数类型
+    deleteFunction: Function,
   },
   setup(props) {
-    var comments = ref([]);
-    onMounted(() => {
-      comments = props.custom;
-    });
-    watchEffect(() => {
-      comments.value = props.custom;
-    });
+    // deleteFun 函数，获取帖子 index 作为参数传给 CommentApp 组件
+    const deleteFun = (index) => {
+      // 调用父组件的 deleteFunction 函数，并将 index 作为参数传入
+      if (props.deleteFunction) {
+        props.deleteFunction(index);
+      }
+    };
     return {
-      comments,
       props,
+      deleteFun,
     };
   },
 };

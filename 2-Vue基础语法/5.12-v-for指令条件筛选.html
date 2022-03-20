@@ -1,64 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>v-for指令条件筛选</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <!--数组的筛选-->
-      <label>
-        <input v-model="playerQueryParam" type="text" />
-      </label>
-      <ul>
-        <li v-for="item in filterPlayers" :key="item.id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>v-for指令条件筛选</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--数组的筛选-->
+    <label>
+      <input v-model="playerQueryParam" type="text" />
+    </label>
+    <ul>
+      <li v-for="item in filterPlayers" :key="item.id">
+        id：{{item.id}} --- 姓名：{{item.name}} --- 年龄：{{item.age}}
+      </li>
+    </ul>
+
+    <!--数组的部分渲染-->
+    <ul>
+      <div v-for="item in players" :key="item.id">
+        <li v-if="filterMethod(item)">
           id：{{item.id}} --- 姓名：{{item.name}} --- 年龄：{{item.age}}
         </li>
-      </ul>
+      </div>
+    </ul>
+  </div>
 
-      <!--数组的部分渲染-->
-      <ul>
-        <div v-for="item in players" :key="item.id">
-          <li v-if="filterMethod(item)">
-            id：{{item.id}} --- 姓名：{{item.name}} --- 年龄：{{item.age}}
-          </li>
-        </div>
-      </ul>
-    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-      let app = Vue.createApp({
-        data() {
-          return {
-            players: [
-              { id: 1, name: "curry", age: 31 },
-              { id: 2, name: "james", age: 34 },
-              { id: 3, name: "kobe", age: 38 },
-            ],
-            playerQueryParam: "",
-          };
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          players: [
+            { id: 1, name: "curry", age: 31 },
+            { id: 2, name: "james", age: 34 },
+            { id: 3, name: "kobe", age: 38 },
+          ],
+          playerQueryParam: "",
+        };
+      },
+      computed: {
+        filterPlayers() {
+          return this.players.filter((player) => {
+            return player.name.includes(this.playerQueryParam);
+          });
         },
-        computed: {
-          filterPlayers() {
-            return this.players.filter((player) => {
-              return player.name.includes(this.playerQueryParam);
-            });
-          },
+      },
+      methods: {
+        filterMethod(item) {
+          //当id等于1返回值为true
+          return item.name.includes(this.playerQueryParam);
         },
-        methods: {
-          filterMethod(item) {
-            //当id等于1返回值为true
-            return item.name.includes(this.playerQueryParam);
-          },
-        },
-      });
-      let vm = app.mount("#app");
-    </script>
-  </body>
+      },
+    });
+  </script>
+</body>
 
-  <html></html>
+<html>
+
+</html>
+
 </html>

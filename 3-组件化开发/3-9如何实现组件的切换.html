@@ -27,9 +27,18 @@
         <h3>注册组件</h3>
     </template>
 
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script>
-        const app = Vue.createApp({
+        Vue.component('Login', {
+            template: '#Login'
+        })
+
+        Vue.component('Register', {
+            template: '#Register'
+        })
+
+        const app = new Vue({
+            el: "#app",
             data() {
                 return {
                     isLogin: true,
@@ -38,14 +47,6 @@
             },
         });
 
-        app.component('Login', {
-            template: '#Login'
-        })
-
-        app.component('Register', {
-            template: '#Register'
-        })
-        const vm = app.mount('#app');
     </script>
 </body>
 

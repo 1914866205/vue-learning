@@ -5,17 +5,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vue中生命周期函数</title>
+  <title>Vue2中生命周期函数</title>
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <input type="text" v-model="message">
+    <h2>{{message}}</h2>
+  </div>
 
-  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
   <script>
     // 生命周期函数：在某一时刻自动执行的函数
-    const app = Vue.createApp({
+    const app = new Vue({
+      el: '#app',
       data() {
         return {
           message: 'hello world'
@@ -27,35 +31,33 @@
       },
       //在 Vue 实例生成之后会自动执行的函数
       created() {
-        console.log('created', document.getElementById('root').innerHTML, this.message);
+        console.log('created', document.getElementById('app').innerHTML, this.message);
       },
       //在组件内容被渲染到页面之前自动执行的函数
       beforeMount() {
-        console.log('beforeMount', document.getElementById('root').innerHTML, this.message)
+        console.log('beforeMount', document.getElementById('app').innerHTML, this.message)
       },
       //在组件内容被渲染到页面之后自动执行的函数
       mounted() {
-        console.log('mounted', document.getElementById('root').innerHTML, this.message)
+        console.log('mounted', document.getElementById('app').innerHTML, this.message)
       },
       // 当 data 中的数据发生变化时自动执行的函数 （可以在控制台 vm.$data.message = 'aaa'）
       beforeUpdate() {
-        console.log('beforeUpdate', document.getElementById('root').innerHTML, this.message);
+        console.log('beforeUpdate', document.getElementById('app').innerHTML, this.message);
       },
       // 当 data中的数据发生变化，同时页面完成更新后，会自动执行的函数
       updated() {
-        console.log('updated', document.getElementById('root').innerHTML, this.message);
+        console.log('updated', document.getElementById('app').innerHTML, this.message);
       },
       // 当 Vue 应用失效时自动执行的函数 (可以通过在控制台执行 app.unmount()模拟该操作)
-      beforeUnmount() {
-        console.log('beforeUnmount', document.getElementById('root').innerHTML, this.message);
+      beforeDestroy() {
+        console.log('beforeDestroy', document.getElementById('app').innerHTML, this.message);
       },
       //当 Vue 应用失效且 DOM 完全销毁之后，自动执行的函数
-      unmounted() {
-        console.log('unmounted', document.getElementById('root').innerHTML, this.message);
+      destroyed() {
+        console.log('destroyed', document.getElementById('app').innerHTML, this.message);
       },
-      template: `<h2>{{message}}</h2>`
     });
-    const vm = app.mount('#app')
   </script>
 </body>
 

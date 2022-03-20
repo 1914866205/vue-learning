@@ -20,24 +20,46 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 
 export default {
   name: "CommentInput",
   setup(props, { emit }) {
     const username = ref("");
     const content = ref("");
+
+    const loadData = () => {
+      // 因为 username 为字符串，可以直接获取，不用转换
+      const loadname = sessionStorage.getItem("username");
+      if (loadname) {
+        username.value = loadname;
+        console.log(loadname);
+      }
+    };
+
+    const saveData = (username) => {
+      // 因为 username 为字符串，可以直接存储，不用转换
+      sessionStorage.setItem("username", username);
+    };
+
     // 传递给父组件一个包含用户输入信息的对象
     const handleUserInfo = () => {
       emit("inputinfo", { username: username.value, content: content.value });
-      // 点击后，将框内信息初始化
-      username.value = "";
+      saveData(username.value);
+      // 每次发布后，评论内容仍需要初始化
       content.value = "";
     };
+    // 挂载前调用获取数据函数
+    onBeforeMount(() => {
+      loadData();
+    });
+
     return {
       username,
       content,
       handleUserInfo,
+      loadData,
+      saveData,
     };
   },
 };

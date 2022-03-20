@@ -105,13 +105,15 @@
   </div>
   </div>
 
-  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
 
   <!-- 注意这里的模块化引入的写法！ -->
   <script type="module">
     import formatDate from "./js/module.js";
 
-    let app = Vue.createApp({
+    const app = new Vue({
+      el: "#app",
       data() {
         return {
           id: 3, //订单id
@@ -187,7 +189,6 @@
         },
       },
     });
-    let vm = app.mount("#app");
   </script>
 </body>
 

@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>v-bind属性绑定的基本用法</title>
-  </head>
 
-  <body>
-    <div id="app">
-      <a v-bind:href="toutiao">今日头条(v-bind:href)</a>
-      <br />
-      <!--语法糖的写法-->
-      <a :href="toutiao">今日头条(语法糖的写法)</a>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>v-bind属性绑定的基本用法</title>
+</head>
 
-    <script src="https://unpkg.com/vue@next"></script>
-    <script>
-      let app = Vue.createApp({
-        data() {
-          return {
-            toutiao: "https://www.toutiao.com",
-          };
-        },
-      });
-      let vm = app.mount("#app");
-    </script>
-  </body>
+<body>
+  <div id="app">
+    <a v-bind:href="toutiao">今日头条(v-bind:href)</a>
+    <br />
+    <!--语法糖的写法-->
+    <a :href="toutiao">今日头条(语法糖的写法)</a>
+  </div>
 
-  <html></html>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data() {
+        return {
+          toutiao: "https://www.toutiao.com",
+        }
+      },
+    });
+  </script>
+</body>
+
+<html>
+
+</html>
+
 </html>

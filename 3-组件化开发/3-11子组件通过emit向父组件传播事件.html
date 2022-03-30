@@ -10,7 +10,7 @@
 
 <body>
     <div id="app">
-        <child-component @increment="changePCounter" @decrement="changePCounter">
+        <child-component @add="changePCounter">
         </child-component>
         <h2>PCounter: {{pCounter}}</h2>
     </div>
@@ -18,7 +18,6 @@
     <template id="ChildComponent">
         <div>
             <button @click="incr">+1</button>
-            <button @click="decr">-1</button>
         </div>
     </template>
 
@@ -33,11 +32,7 @@
             methods: {
                 incr() {
                     this.cCounter++;
-                    this.$emit('increment', this.cCounter);
-                },
-                decr() {
-                    this.cCounter--;
-                    this.$emit('decrement', this.cCounter);
+                    this.$emit('add', this.cCounter);
                 }
             }
         }

@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": ";ACsIA,cAAc;ADpFd,cAAc",
+    "sources": [
+        "variables.scss",
+        "styles/setting/_variables.scss",
+        "styles/tools/functions.scss"
+    ],
+    "names": [],
+    "file": "variables.css"
+}

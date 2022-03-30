@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shadow示例</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+
+<body>
+    <div id="app">
+        <!-- 登录、注册切换按钮 -->
+        <a href="" @click.prevent="show=!show">圆环进度条动画</a>
+        <a href="" @click.prevent="show=!show">内切角</a>
+        <!-- 登录组件和注册组件-->
+        <shadow-one v-if="show"></shadow-one>
+        <shadow-two v-else="show"></shadow-two>
+    </div>
+
+    <template id="ShadowOne">
+        <h3>Box-shadow实现圆环进度条动画</h3>
+        <div class="container">
+            <div class="shadow">Hover Me</div>
+        </div>
+    </template>
+
+    <template id="ShadowTwo">
+        <h3>使用box-shadow/渐变实现内切角</h3>
+        <div class="shadow">使用阴影的扩散半径实现内切圆角</div>
+        <div class="shadow2">阴影实现缺点，单个标签最多是2边</div>
+        <div class="linear">使用径向渐变实现内切圆角</div>
+        <div class="linear2">径向渐变实现内切圆角可以是4边</div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        Vue.component('ShadowOne', {
+            template: '#ShadowOne'
+        })
+
+        Vue.component('ShadowTwo', {
+            template: '#ShadowTwo'
+        })
+
+        const app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    show: true,
+                    comName: 'ShadowOne'
+                }
+            },
+        });
+
+    </script>
+</body>
+
+<html>

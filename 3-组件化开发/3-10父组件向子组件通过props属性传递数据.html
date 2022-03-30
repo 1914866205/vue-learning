@@ -6,19 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>父组件向子组件通过props属性传递数据</title>
+
 </head>
 
 <body>
     <div id="app">
-        <child-component :child-player="player" :child-message="message" />
+        <div style="width:400px;height:200px;background-color: #dbb5b5;">
+            <child-component :child-player="player" :child-message="message" />
+        </div>
+        <div style="width:400px;height:200px;background-color: #92c1dd;">
+            <my-component :prop-c="info" :prop-d="count"></my-component>
+        </div>
     </div>
 
     <template id="ChildComponent">
         <div>
-            <h2>{{childPlayer.name}} ---- {{childPlayer.age}}</h2>
+            <h2>{{childPlayer.name}} --- {{childPlayer.age}}</h2>
             <h2>{{childMessage}}</h2>
         </div>
     </template>
+
+    <template id="MyComponent">
+        <div>
+            <h2>{{propC}}</h2>
+            <h2>{{propD}}</h2>
+        </div>
+    </template>
+
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
@@ -26,6 +40,20 @@
         const ChildComponent = {
             template: '#ChildComponent',
             props: ['childPlayer', 'childMessage']
+        }
+
+        const MyComponent = {
+            template: '#MyComponent',
+            props: {
+                propC: {
+                    type: String,
+                    required: true
+                },
+                propD: {
+                    type: Number,
+                    default: 100
+                },
+            }
         }
 
         const app = new Vue({
@@ -36,11 +64,13 @@
                         name: 'zhangsan',
                         age: 20,
                     },
-                    message: '父组件数据->子组件'
+                    message: '父组件向子组件传值',
+                    info: 'hello world',
+                    count: 88
                 }
             },
             components: {
-                ChildComponent
+                ChildComponent, MyComponent
             },
         });
     </script>
